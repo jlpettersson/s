@@ -70,6 +70,8 @@ app.use(async (context, next) => {
 
 // Send static content
 app.use(async (context) => {
+  context.response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
+  context.response.headers.set("Cross-Origin-Embedder-Policy", "require-corp");
   await context.send({
     root: `${Deno.cwd()}`,
     index: "index.html",
